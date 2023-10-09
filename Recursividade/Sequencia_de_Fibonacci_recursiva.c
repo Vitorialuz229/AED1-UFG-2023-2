@@ -16,13 +16,17 @@ Portanto,os seus dez primeiros termos são 0,1,1,2,3,5,8,13,21,34.
 long fib(long n) { 
     if(n == 0) {
      return(0); 
-    } else if (n <=1){ 
+    } else if (n <=2){ 
         return (fib(n-1) + fibo(n-2));
     }
 }
 
-
 void main () { 
+    int n, i; 
+    scanf("%d", &n);
+    i++; 
+    
+    printf("%d", n);
 
 return 0; 
 }

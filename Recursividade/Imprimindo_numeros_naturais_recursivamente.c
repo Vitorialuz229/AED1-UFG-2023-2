@@ -15,7 +15,7 @@ int escrever(int num, int n) {
     printf("%d ",num); 
     if(num == n-1) 
     return(0); 
-    else return(escrever(num +1, n));
+    else return(escrever(num + 1, n));
 }
 
 int main() { 
