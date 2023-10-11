@@ -11,22 +11,27 @@ fn = fn−1 + fn−2, com n ∈ N e n ≥ 2
 Portanto,os seus dez primeiros termos são 0,1,1,2,3,5,8,13,21,34.
 */
 
-#include <stdio.h> 
+#include <stdio.h>
 
-long fib(long n) { 
-    if(n == 0) {
-     return(0); 
-    } else if (n <=2){ 
-        return (fib(n-1) + fibo(n-2));
-    }
-}
+long fib(long n) {
 
-void main () { 
-    int n, i; 
-    scanf("%d", &n);
-    i++; 
-    
-    printf("%d", n);
-
-return 0; 
-}
+  if(n==0)
+    return(0);
+   else if(n==1)
+          return(1);
+         else if(n>=2)
+                return(fib(n-1)+fib(n-2));
+  }
+         
+  int main() {
+    long n, i, j;
+    scanf("%ld", &n);
+  
+    for(i=0; i<n+1;i++){
+    j = fib(i);
+    printf("%ld ", j);
+   }
+   printf("\n"); 
+  return 0;
+  return 0;
+  }
