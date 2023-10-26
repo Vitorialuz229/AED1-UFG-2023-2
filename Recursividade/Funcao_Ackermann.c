@@ -4,10 +4,10 @@
 /*Uma das versões mais comuns, a Função de Ackermann-Péter, que possui apenas dois argumentos,
 é definida a seguir para números naturais m e n:
 fack(m,n) =
-
     (n+1), se m = 0
     fack(m−1,1), se n = 0,m > 0
     fack(m−1, fack(m,n−1)), se n > 0,m > 0
+
 Entrada
 A única linha da entrada contém dois números naturais m e n separados por um único espaço em branco,
 nesta ordem, representando os parâmetros para a Função de Ackermann.

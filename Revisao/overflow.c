@@ -10,11 +10,12 @@ positivos, determine se ocorrerá, ou não, overflow naquele computador.
 
 int main() {
     int64_t maxNumber;
-    scanf("%lld", &maxNumber);
+    scanf("%lld", &maxNumber); //Leia o maior número que o computador consegue representar
 
-    int64_t operand1, operand2;
+    int64_t operand1, operand2; 
     char operation;
 
+    //Represente a expressão N1 + N2 ou N1 x N2
     scanf("%lld %c %lld", &operand1, &operation, &operand2);
 
     int64_t result;
@@ -25,7 +26,7 @@ int main() {
         result = operand1 * operand2;
     }
 
-    if (result > maxNumber) {
+    if (result >= maxNumber) { //Se o resultado for maior ou igual que numero máximo
         printf("overflow\n");
     } else {
         printf("no overflow\n");
