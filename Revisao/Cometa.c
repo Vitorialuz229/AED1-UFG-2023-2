@@ -19,14 +19,36 @@ Terra pela última vez, é considerado o “marco de sincronismo” para os cál
 //Fórmula para determinar o próximo ano que o cometa Halley será visível novamente
 //n = (ano - 1986)/76
 //prox_ano = 1986 + (n + 1)*76
-void main(int argc, char *argv[]) { 
-    int ano, prox_ano; 
-    scanf("%d", &ano);
+#include <stdio.h>
+#define ULTIMA_VEZ 1986
 
-    prox_ano = (ano - 1986)/76; 
-    prox_ano++; 
+int main(){
+    int ano, proximo;
     
-    printf("%d", prox_ano * 76 + 1986);
+    scanf("%d", &ano);
     
-return 0;     
+    if(ano >= ULTIMA_VEZ){//verifica se o 'ano' é maior ou igual ao 'ultimo_vez'(1986)
+        proximo = ULTIMA_VEZ + 76;//proximo 'ano' será 'Ultima_vez' (1986) + 76 
+                                 //a cada quanto tempo o cometa aparece 
+        
+        //Iniciaza a variável 'proximo' com o valor 1986(o último ano bissexto conhecido)
+        //Entra no loop que continua até que 'proximo' seja maior ou igual ao ano fornecido
+        while(proximo < ano){
+            proximo += 76; //Cada interação, adiciona 76 anos a 'proximo'
+        }
+    } else{
+        proximo = ULTIMA_VEZ;
+
+        //Se o ano fornecido for menor que 1986, ele calcula o próximo ano bissexto antes de 1986       
+        //Inicia a variavel 'proximo' com o valor 1986
+        //Entra em um loop que continua até que 'proximo' seja menor ou igual 
+        //ao ano fornecido mais 76
+        while(proximo > ano + 76){
+            proximo -= 76;
+        }                
+    }
+    
+    printf("%d\n", proximo);
+
+    return 0;
 }
