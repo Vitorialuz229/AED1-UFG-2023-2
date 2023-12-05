@@ -4,23 +4,28 @@ termo da “Série de Fibonacci”.
 Observação: Note que a contagem dos termos foi iniciada com o termo 0 (zero): f0 = 0.
 */
 
-#include <stdio.h> 
+#include <stdio.h>
 
-long fibonacci(long n) { 
-    if(n == 0){ 
-        return 0;
-    } else if(n == 1){ 
-        return 1;
-    } else{ 
-        return fibonacci(n - 1) + fibonacci (n - 2);
-    }
-}
-int main () { 
-int n, i; 
-scanf("%d", &n); 
+long fib(long n) {
 
-for (int i = 0; i < n; i++) { 
-    printf("%d ", fibonacci(i));
-}
-return 0; 
-}
+  if(n==0)
+    return(0);
+   else if(n==1)
+          return(1);
+         else if(n>=2)
+                return(fib(n-1)+fib(n-2));
+  
+  }
+         
+  int main() {
+    long n, i, j;
+    scanf("%ld", &n);
+  
+    for(i=0; i<n+1;i++){
+    j = fib(i);
+    printf("%ld ", j);
+   }
+   printf("\n"); 
+  return 0;
+
+  }

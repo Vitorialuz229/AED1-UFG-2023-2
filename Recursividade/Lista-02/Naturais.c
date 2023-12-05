@@ -13,14 +13,14 @@ void naturais(int n) {
 int main (){ 
     int n; 
     scanf("%d", &n);
-    printf(" ");
+    printf("");
 
     if(n >= 1 && n <= 5000) { 
         naturais(n);
     } else { 
-        printf(" ");    
+        printf("");    
     }
-    printf(" \n");
+    printf("\n");
 
 return 0; 
 }

@@ -3,9 +3,7 @@ número reverso de um certo número natural estritamente positivo n
 fornecido como entrada.*/
 
 #include <stdio.h>
-
 int sum=0, rem;
-
 int reverse_function(int num) {
   if(num) {
     rem=num%10;
@@ -16,14 +14,11 @@ int reverse_function(int num) {
     return sum;
   return sum;
 }
-
 int main() {
   int num,reverse_number;
-
-  printf(" ");
+    printf("");
   scanf("%d",&num);
-
-  reverse_number=reverse_function(num);
-  printf(" %d",reverse_number);
-  return 0;
+    reverse_number=reverse_function(num);
+    printf("%d",reverse_number);
+return 0;
 }
