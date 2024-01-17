@@ -6,32 +6,55 @@ do rio que está no “fundo” da casa dos avós de SBC – 1,2,3,... – e, po
 no rio após assistir ao balé dos pulos dos sapos.”.
 */
 #include <stdio.h>
+#include <stdlib.h>
 
-int main(){
-    int nPedras, nSapos, pInicial, dPulo;
-    int i, j, posicao; 
+struct sapo_t{
+    int posicao;
+    int pulo;
+};
+typedef struct sapo_t sapo_t;
+
+int main (void)
+{
+    int num_pedras;
+    int num_sapos;
+    int i;
+    int* pedras_v = NULL;
+    sapo_t* sapos_v = NULL;
+    sapo_t sapo;
     
-    scanf("%d %d", &nPedras, &nSapos);
+    scanf(" %d", &num_pedras);
+    scanf(" %d", &num_sapos);
     
-    int pedras[nPedras];
+    // A posição 0 representa a margem, logo as pedras começam em 1.
+    num_pedras += 1;
     
-    for(i=0; i<nPedras; i++)
-        pedras[i] = 0;
+    sapos_v = malloc(sizeof (sapo_t) * num_sapos);
+    pedras_v = calloc(num_pedras, sizeof (int));
     
-    for(i=0; i<nSapos; i++){
-        scanf("%d %d", &pInicial, &dPulo);
+    for (i = 0; i < num_sapos; i++){
+        scanf(" %d", &(sapos_v[i].posicao));
+        scanf(" %d", &(sapos_v[i].pulo));
+    }
+    
+    // Marca as pedras que um sapo qualquer pode alcançar
+    for (i = 0; i < num_sapos; i++){
+        sapo = sapos_v[i];
+        while (sapo.posicao <= num_pedras){
+            pedras_v[sapo.posicao] = 1;
+            sapo.posicao += sapo.pulo;
+        }
         
-        posicao = pInicial;
-        
-        for(j=0; j<nPedras; j++){
-            for(posicao = pInicial; posicao <= nPedras; posicao += dPulo)
-                if(pedras[j] == 0 && posicao-1 == j)
-                    pedras[j] = 1;
+        sapo = sapos_v[i];
+        while (sapo.posicao > 0){
+            pedras_v[sapo.posicao] = 1;
+            sapo.posicao -= sapo.pulo;
         }
     }
     
-    for(i=0; i<nPedras; i++)
-        printf("%d\n", pedras[i]);
+    for (i = 1; i < num_pedras; i++){
+        printf("%d\n", pedras_v[i]);
+    }
     
     return 0;
 }

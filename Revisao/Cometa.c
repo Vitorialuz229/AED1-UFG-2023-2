@@ -14,41 +14,96 @@ como tendo exatamente 365 dias terrestres. O ano de 1986, quando o cometa de Hal
 Terra pela última vez, é considerado o “marco de sincronismo” para os cálculos do programa a ser elaborado.
 */
 
-#include <stdio.h>
 
-//Fórmula para determinar o próximo ano que o cometa Halley será visível novamente
-//n = (ano - 1986)/76
-//prox_ano = 1986 + (n + 1)*76
 #include <stdio.h>
-#define ULTIMA_VEZ 1986
+#include <math.h>
 
-int main(){
-    int ano, proximo;
+#define MARCO 1986
+#define INTERVALO 76
+#define ANOS_ERRO 365
+
+// Verifica se o número passado corresponde a um ano bissexto.
+int bissexto(int ano)
+{
+    if(ano % 4 == 0 && ano % 100 != 0) return 1;
+    if(ano % 400 == 0 && ano % 100 == 0) return 1;
     
-    scanf("%d", &ano);
-    
-    if(ano >= ULTIMA_VEZ){//verifica se o 'ano' é maior ou igual ao 'ultimo_vez'(1986)
-        proximo = ULTIMA_VEZ + 76;//proximo 'ano' será 'Ultima_vez' (1986) + 76 
-                                 //a cada quanto tempo o cometa aparece 
-        
-        //Iniciaza a variável 'proximo' com o valor 1986(o último ano bissexto conhecido)
-        //Entra no loop que continua até que 'proximo' seja maior ou igual ao ano fornecido
-        while(proximo < ano){
-            proximo += 76; //Cada interação, adiciona 76 anos a 'proximo'
+    return 0;
+}
+
+// A cada 365 anos bissextos, adiciona ou subtrai 1 ano de proxPassagem.
+void corrigeErro(int *proxPassagem)
+{
+    int distancia = (int) fabs(*proxPassagem - MARCO);
+    int anosBissextos = 0;
+
+    if(*proxPassagem > MARCO){
+        for(distancia; distancia != 0; distancia--){
+            anosBissextos += bissexto(MARCO + distancia);
         }
-    } else{
-        proximo = ULTIMA_VEZ;
 
-        //Se o ano fornecido for menor que 1986, ele calcula o próximo ano bissexto antes de 1986       
-        //Inicia a variavel 'proximo' com o valor 1986
-        //Entra em um loop que continua até que 'proximo' seja menor ou igual 
-        //ao ano fornecido mais 76
-        while(proximo > ano + 76){
-            proximo -= 76;
-        }                
+        anosBissextos = (int) (anosBissextos / ANOS_ERRO);
+        *proxPassagem += anosBissextos;
     }
-    
-    printf("%d\n", proximo);
+    else{
+        for(distancia; distancia != 0; distancia--){
+            anosBissextos += bissexto(MARCO - distancia);
+        }
+
+        anosBissextos = (int) (anosBissextos / ANOS_ERRO);
+        *proxPassagem -= anosBissextos;
+    }
+}
+
+// Descobre a próxima passagem do cometa Haley a partir do ano fornecido.
+int calculoProxPassagem(int anoAtual)
+{
+    int proxPassagem = MARCO;
+    int diferenca = anoAtual - MARCO;
+
+    if(diferenca > 0){
+        for(proxPassagem;
+            proxPassagem < anoAtual;
+            proxPassagem += 76);
+
+        corrigeErro(&proxPassagem);
+
+        if(proxPassagem == anoAtual){
+            proxPassagem += 76;
+            corrigeErro(&proxPassagem);
+            return proxPassagem;
+        }
+
+        return proxPassagem;
+    }
+    else if(diferenca < 0){
+        for(proxPassagem;
+            proxPassagem > anoAtual && proxPassagem -76 > anoAtual;
+            proxPassagem -= 76);
+
+        corrigeErro(&proxPassagem);
+
+        if(proxPassagem == anoAtual){
+            proxPassagem += 76;
+            corrigeErro(&proxPassagem);
+            return proxPassagem;
+        }
+
+        return proxPassagem;
+    }
+    else{
+        return (anoAtual + 76);
+    }
+}
+
+int main(void)
+{
+    int anoAtual;
+    int proxPassagem;
+
+    scanf("%d", &anoAtual);
+    proxPassagem = calculoProxPassagem(anoAtual);
+    printf("%d\n", proxPassagem);
 
     return 0;
 }

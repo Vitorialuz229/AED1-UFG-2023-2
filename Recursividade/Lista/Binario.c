@@ -4,7 +4,7 @@ notação binária. O programa deve utilizar uma “função recursiva” para
 realizar a conversão.*/
 #include <stdio.h>
 
-// Função recursiva para converter um número decimal para binário
+// Função recursiva para converter decimal para binário
 void decimalParaBinario(int n) {
     if (n > 0) {
         decimalParaBinario(n / 2);
@@ -13,20 +13,18 @@ void decimalParaBinario(int n) {
 }
 
 int main() {
-    int k;
+    int k, i, numero;
 
     // Leitura do número de casos de teste
     scanf("%d", &k);
 
     // Processamento de cada caso de teste
-    for (int i = 0; i < k; i++) {
-        int ni;
+    for (i = 0; i < k; i++) {
+        // Leitura do número a ser convertido
+        scanf("%d", &numero);
 
-        // Leitura do número decimal a ser convertido
-        scanf("%d", &ni);
-
-        // Impressão da representação binária
-        decimalParaBinario(ni);
+        // Impressão do resultado
+        decimalParaBinario(numero);
         printf("\n");
     }
 

@@ -1,6 +1,6 @@
 //Brincadeira (+)
 //Exercicio 42
-//Exercicio 13 da lista de Pilha e Filh
+//Exercicio 13 da lista de Pilha e Filha
 
 #include <stdio.h>
 #include <stdlib.h>
